@@ -1871,6 +1871,12 @@ export class NodeDebugSession extends DebugSession {
 			this._sendNodeResponse(response, nodeResponse);
 		});
 	}
+    
+    protected stepBackRequest(response: DebugProtocol.StepBackResponse, args: DebugProtocol.StepBackArguments) : void {
+		this._node.command('continue', { stepaction: 'back' }, (nodeResponse) => {
+			this._sendNodeResponse(response, nodeResponse);
+		});
+	}
 
 	protected nextRequest(response: DebugProtocol.NextResponse, args: DebugProtocol.NextArguments): void {
 		this._node.command('continue', { stepaction: 'next' }, (nodeResponse) => {
